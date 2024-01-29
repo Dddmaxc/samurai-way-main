@@ -1,0 +1,14 @@
+.content {
+	grid-area: c;
+	background-color: #ffc401;
+}
+.content img {
+	width: 100%;
+}
+.item > img {
+	width: 50px;
+	border-radius: 15%;
+}
+span {
+	display: block;
+}
