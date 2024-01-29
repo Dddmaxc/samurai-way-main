@@ -12,7 +12,10 @@ export const MyPost = () => {
 					<button>Add post</button>
 					<button>Remove</button>
 				</div>
-				<Post />
+				<div className={s.posts}>
+					<Post message='Hi, how are u?' like={13} />
+					<Post message='it is my first post' like={15} />
+				</div>
 			</div>
 		</>
 	)
