@@ -1,0 +1,19 @@
+html {
+	background-color: #ffb700;
+}
+.dialogs {
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+}
+
+.dialogs .dialogsItems {
+}
+
+.dialog {
+}
+
+.messages {
+}
+
+.message {
+}
