@@ -1,31 +1,30 @@
 import { NavLink } from 'react-router-dom'
 import s from './Dialogs.module.css'
-import { DialogItem } from './DialogItem'
-import { Message } from './Message'
+import { DialogItem } from './DialogITem/DialogItem'
+import { Message } from './Message/Message'
+import { MessagesPageState } from '../../redux/state'
 
-let dialogsData = [
-	{ name: 'Naruto', id: '1' },
-	{ name: 'Saitama', id: '2' },
-	{ name: 'Itachi', id: '3' },
-	{ name: 'Arima', id: '4' },
-	{ name: 'Akama', id: '5' },
-]
+type Props = {
+	dialogsData: MessagesPageState
+}
 
-let messagesData = [
-	{ message: 'Hi', id: '1' },
-	{ message: 'How are u?', id: '2' },
-	{ message: 'Set me yr heard', id: '3' },
-	{ message: 'I love u', id: '4' },
-	{ message: 'I like to be happy', id: '5' },
-]
+export const Dialogs = ({ dialogsData }: Props) => {
+	let dialogsElements = dialogsData.dialogsData.map((d, id) => (
+		<div className={s.containerForImgAndName} key={id}>
+			<div className={s.name}>
+				<DialogItem name={d.name} id={d.id} />
+			</div>
+			<div className={s.images}>
+				<img src={d.images} alt='img' />
+			</div>
+		</div>
+	))
 
-let dialogsElements = dialogsData.map(d => (
-	<DialogItem name={d.name} id={d.id} />
-))
-
-let messagesElements = messagesData.map(m => <Message message={m.message} />)
-
-export const Dialogs = () => {
+	let messagesElements = dialogsData.messagesData.map(m => (
+		<div className={s.text}>
+			<Message message={m.message} />
+		</div>
+	))
 	return (
 		<div className={s.dialogs}>
 			<div className={s.dialogsItems}>{dialogsElements}</div>

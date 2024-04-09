@@ -5,10 +5,7 @@ export const Header = () => {
 	return (
 		<>
 			<header className={s.header}>
-				<img
-					src='https://i.pinimg.com/564x/b6/d9/5d/b6d95d9eb966b8c1f901e1e36ae14986.jpg'
-					alt='nike'
-				/>
+				<img src='https://www.pngall.com/wp-content/uploads/14/Gojo-PNG-File.png' />
 			</header>
 		</>
 	)

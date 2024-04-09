@@ -1,13 +1,12 @@
-import React from 'react'
 import s from './profile.module.css'
-import { MyPost } from './myPosts/MyPost'
+import { MyPost, PostType } from './myPosts/MyPost'
 import { ProfileInfo } from './ProFileInfo/ProfileInfo'
 
-export const Profile = () => {
+export const Profile = (props: PostType) => {
 	return (
 		<div>
 			<ProfileInfo />
-			<MyPost />
+			<MyPost posts={props.posts} />
 		</div>
 	)
 }

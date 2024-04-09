@@ -1,11 +1,15 @@
+html {
+	font-family: 'Goldman', sans-serif;
+	height: 100vh;
+}
 .app-wrapper {
 	display: grid;
+	padding-top: 60px;
+	grid-template-areas: 'n c';
 
-	grid-template-areas:
-		'h h'
-		'n c';
-
-	grid-template-rows: 60px 1fr;
 	grid-template-columns: 2fr 10fr;
 	grid-gap: 10px;
+	background-image: url('../imgs/background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
