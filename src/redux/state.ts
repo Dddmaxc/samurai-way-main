@@ -1,5 +1,5 @@
 import { message } from 'antd'
-import { rerenderEntireTree } from '../render'
+import { useState } from 'react'
 
 type Dialog = {
 	name: string
@@ -26,6 +26,10 @@ type Friends = {
 	id: string
 	name: string
 	images: string
+}
+
+let rerenderEntireTree = (state: PropsStateType) => {
+	console.log('render')
 }
 
 export type MessagesPageState = {
@@ -124,6 +128,10 @@ export let addPost = (postMessage: string) => {
 
 	state.profilePage.posts.push(newPost)
 	rerenderEntireTree(state)
+}
+
+export let subscriber = (observer: (state: PropsStateType) => void) => {
+	rerenderEntireTree = observer
 }
 
 export default state

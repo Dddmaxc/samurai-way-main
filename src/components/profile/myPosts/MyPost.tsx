@@ -35,7 +35,7 @@ export const MyPost = (props: PostType) => {
 			<div className={s.item}>
 				<h3>My posts</h3>
 				<div>
-					<textarea value={newPost} onChange={onChangeHandler}></textarea>
+					<textarea value={newPost} onChange={onChangeHandler} />
 					<button onClick={addPost}>add post</button>
 					<button>remove</button>
 				</div>
