@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
 import s from './MyPost.module.css'
 import { Post } from './post/Post'
+import { log } from 'console'
 
 type PropsPostType = {
 	id: string
@@ -8,7 +9,10 @@ type PropsPostType = {
 	likesCount: number
 }
 
-export type PostType = { posts: Array<PropsPostType> }
+export type PostType = {
+	posts: Array<PropsPostType>
+	addPost: (newPost: string) => void
+}
 
 export const MyPost = (props: PostType) => {
 	const [newPost, setNewPost] = useState('')
@@ -22,7 +26,8 @@ export const MyPost = (props: PostType) => {
 	}
 
 	let addPost = () => {
-		alert(newPost)
+		props.addPost(newPost)
+		setNewPost('')
 	}
 
 	return (

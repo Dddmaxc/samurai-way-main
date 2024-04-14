@@ -15,10 +15,10 @@ img {
 	height: 50px;
 	border-radius: 50%;
 }
-img:hover {
+/* .dialogs img:hover {
 	transform: scale(1.2);
 	transition: ease-in-out;
-}
+} */
 .containerForImgAndName {
 	display: flex;
 	flex-direction: row-reverse;

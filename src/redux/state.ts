@@ -1,10 +1,13 @@
+import { message } from 'antd'
+import { rerenderEntireTree } from '../render'
+
 type Dialog = {
 	name: string
 	id: string
 	images: string
 }
 
-type Post = {
+export type Post = {
 	id: string
 	message: string
 	likesCount: number
@@ -111,4 +114,16 @@ let state: PropsStateType = {
 		],
 	},
 }
+
+export let addPost = (postMessage: string) => {
+	let newPost = {
+		id: '3',
+		message: postMessage,
+		likesCount: 0,
+	}
+
+	state.profilePage.posts.push(newPost)
+	rerenderEntireTree(state)
+}
+
 export default state
