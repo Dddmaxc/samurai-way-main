@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom'
 import s from './navbar.module.css'
-import { SideBarPageState } from '../../redux/state'
+import { SideBarPage } from '../../redux/state'
 
 type Props = {
-	SideBarPage: SideBarPageState
+	SideBarPage: SideBarPage
 }
 
 export const Navbar = ({ SideBarPage }: Props) => {

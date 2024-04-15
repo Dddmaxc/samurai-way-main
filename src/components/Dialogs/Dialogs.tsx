@@ -2,13 +2,16 @@ import { NavLink } from 'react-router-dom'
 import s from './Dialogs.module.css'
 import { DialogItem } from './DialogITem/DialogItem'
 import { Message } from './Message/Message'
-import { MessagesPageState } from '../../redux/state'
+import { DialogsPage } from '../../redux/state'
+import { ChangeEvent, KeyboardEventHandler, useState } from 'react'
 
 type Props = {
-	dialogsData: MessagesPageState
+	dialogsData: DialogsPage
+	addMessage: (newMessage: string) => void
 }
 
-export const Dialogs = ({ dialogsData }: Props) => {
+export const Dialogs = ({ dialogsData, addMessage }: Props) => {
+	const [value, setValue] = useState('')
 	let dialogsElements = dialogsData.dialogsData.map((d, id) => (
 		<div className={s.containerForImgAndName} key={id}>
 			<div className={s.name}>
@@ -25,10 +28,41 @@ export const Dialogs = ({ dialogsData }: Props) => {
 			<Message message={m.message} />
 		</div>
 	))
+
+	let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+		setValue(e.currentTarget.value)
+	}
+
+	let onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+		console.log(e)
+		if (e.code === 'Enter') {
+			addMessage(value)
+			setValue('')
+		}
+	}
+
 	return (
-		<div className={s.dialogs}>
-			<div className={s.dialogsItems}>{dialogsElements}</div>
-			<div className={s.messages}>{messagesElements}</div>
-		</div>
+		<>
+			<div className={s.dialogs}>
+				<div className={s.dialogsItems}>{dialogsElements}</div>
+				<div className={s.messages}>
+					{messagesElements}
+					<p>
+						<div className={s.containerTextarea}>
+							<img
+								src='https://wallpapercave.com/wp/wp11187241.jpg'
+								alt='img'
+							/>
+							<textarea
+								value={value}
+								onChange={onChangeHandler}
+								className={s.textarea}
+								onKeyPress={onKeyPressHandler}
+							></textarea>
+						</div>
+					</p>
+				</div>
+			</div>
+		</>
 	)
 }

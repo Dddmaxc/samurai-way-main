@@ -4,12 +4,13 @@ import { Navbar } from './components/navbar/Navbar'
 import { Profile } from './components/profile/Profile'
 import { Dialogs } from './components/Dialogs/Dialogs'
 import { BrowserRouter, Route } from 'react-router-dom'
-import { PropsStateType } from './redux/state'
+import { State } from './redux/state'
 import { log } from 'console'
 
 type Props = {
-	state: PropsStateType
+	state: State
 	addPost: (newPost: string) => void
+	addMessage: (newPost: string) => void
 }
 
 function App(props: Props) {
@@ -19,19 +20,24 @@ function App(props: Props) {
 			<div className='app-wrapper'>
 				<Navbar
 					SideBarPage={{
-						friends: props.state.SideBarPage.friends,
+						friends: props.state._state.SideBarPage.friends,
 					}}
 				/>
 				<Route
 					exact
 					path={'/dialogs'}
-					render={() => <Dialogs dialogsData={props.state.DialogsPage} />}
+					render={() => (
+						<Dialogs
+							dialogsData={props.state._state.DialogsPage}
+							addMessage={props.addMessage}
+						/>
+					)}
 				/>
 				<Route
 					path={'/profile'}
 					render={() => (
 						<Profile
-							posts={props.state.profilePage.posts}
+							posts={props.state._state.profilePage.posts}
 							addPost={props.addPost}
 						/>
 					)}

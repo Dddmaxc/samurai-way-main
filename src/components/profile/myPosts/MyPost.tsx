@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import s from './MyPost.module.css'
 import { Post } from './post/Post'
-import { log } from 'console'
 
 type PropsPostType = {
 	id: string
@@ -35,7 +34,11 @@ export const MyPost = (props: PostType) => {
 			<div className={s.item}>
 				<h3>My posts</h3>
 				<div>
-					<textarea value={newPost} onChange={onChangeHandler} />
+					<textarea
+						className={s.textarea}
+						value={newPost}
+						onChange={onChangeHandler}
+					/>
 					<button onClick={addPost}>add post</button>
 					<button>remove</button>
 				</div>

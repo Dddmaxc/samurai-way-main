@@ -10,6 +10,8 @@ html {
 	grid-template-columns: 2fr 10fr;
 	grid-gap: 10px;
 	background-image: url('../imgs/background.jpg');
-	background-repeat: no-repeat;
+	background-position: center center;
 	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }

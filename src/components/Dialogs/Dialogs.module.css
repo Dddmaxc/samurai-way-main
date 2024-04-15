@@ -2,6 +2,8 @@
 	display: grid;
 	grid-template-columns: 2fr 10fr;
 	height: 100vh;
+	width: 1000px;
+	overflow: auto;
 }
 
 .dialogsItems a {
@@ -42,4 +44,23 @@ img {
 }
 
 .message {
+}
+.containerTextarea {
+	display: flex;
+	column-gap: 10px;
+}
+
+.textarea {
+	width: 800px;
+	height: 30px;
+	border-radius: 20px;
+	font-size: 20px;
+	padding: 10px 5px 5px 20px;
+	background-color: #d900ff7a;
+	color: #00faff;
+}
+::-webkit-scrollbar {
+	width: 24px; /* ширина для вертикального скролла */
+	height: 8px; /* высота для горизонтального скролла */
+	background-color: #d900ff7a;
 }
