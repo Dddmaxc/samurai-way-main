@@ -59,8 +59,12 @@ img {
 	background-color: #d900ff7a;
 	color: #00faff;
 }
+.textarea::-webkit-scrollbar {
+	width: 0px;
+	height: 2px;
+}
 ::-webkit-scrollbar {
-	width: 24px; /* ширина для вертикального скролла */
+	width: 0px; /* ширина для вертикального скролла */
 	height: 8px; /* высота для горизонтального скролла */
 	background-color: #d900ff7a;
 }

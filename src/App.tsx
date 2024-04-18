@@ -5,12 +5,10 @@ import { Profile } from './components/profile/Profile'
 import { Dialogs } from './components/Dialogs/Dialogs'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { State } from './redux/state'
-import { log } from 'console'
 
 type Props = {
 	state: State
-	addPost: (newPost: string) => void
-	addMessage: (newPost: string) => void
+	dispatch: (action: any) => void
 }
 
 function App(props: Props) {
@@ -29,7 +27,7 @@ function App(props: Props) {
 					render={() => (
 						<Dialogs
 							dialogsData={props.state._state.DialogsPage}
-							addMessage={props.addMessage}
+							dispatch={props.dispatch}
 						/>
 					)}
 				/>
@@ -38,7 +36,7 @@ function App(props: Props) {
 					render={() => (
 						<Profile
 							posts={props.state._state.profilePage.posts}
-							addPost={props.addPost}
+							dispatch={props.dispatch}
 						/>
 					)}
 				/>

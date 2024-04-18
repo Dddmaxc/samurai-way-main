@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
 import s from './MyPost.module.css'
 import { Post } from './post/Post'
+import { addPostAC } from '../../../redux/profile-reducer'
 
 type PropsPostType = {
 	id: string
@@ -9,8 +10,8 @@ type PropsPostType = {
 }
 
 export type PostType = {
+	dispatch: (action: any) => void
 	posts: Array<PropsPostType>
-	addPost: (newPost: string) => void
 }
 
 export const MyPost = (props: PostType) => {
@@ -25,7 +26,8 @@ export const MyPost = (props: PostType) => {
 	}
 
 	let addPost = () => {
-		props.addPost(newPost)
+		let action = addPostAC(newPost)
+		props.dispatch(action)
 		setNewPost('')
 	}
 

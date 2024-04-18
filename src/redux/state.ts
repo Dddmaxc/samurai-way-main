@@ -1,3 +1,7 @@
+import dialogsReducer from './dialogs-reducer'
+import profileReducer, { ActionTypes } from './profile-reducer'
+import sideBarReducer from './sideBar-reducer'
+
 type Post = {
 	id: string
 	message: string
@@ -21,7 +25,7 @@ type Friend = {
 	images: string
 }
 
-type ProfilePage = {
+export type ProfilePage = {
 	posts: Post[]
 }
 
@@ -42,7 +46,7 @@ export type State = {
 	}
 }
 
-type Store = {
+export type Store = {
 	_state: {
 		profilePage: ProfilePage
 		DialogsPage: DialogsPage
@@ -126,23 +130,28 @@ let store = {
 			],
 		},
 	},
-	getState() {
-		return this._state
-	},
 	_callSubscriber() {
 		console.log('render')
 	},
-	addPost(postMessage: string) {
-		let newPost = {
-			id: '3',
+	getState() {
+		return this._state
+	},
+	subscriber(observer: any) {
+		this._callSubscriber = observer
+	},
+
+	_addPost(postMessage: string) {
+		const newPost = {
+			id: '10',
 			message: postMessage,
 			likesCount: 0,
 		}
 
 		this._state.profilePage.posts.push(newPost)
+
 		this._callSubscriber()
 	},
-	addMessage(message: string) {
+	_addMessage(message: string) {
 		let newMessage = {
 			message: message,
 			id: '6',
@@ -159,8 +168,12 @@ let store = {
 		this._state.DialogsPage.messagesData.push(newMessage)
 		this._callSubscriber()
 	},
-	subscriber(observer: any) {
-		this._callSubscriber = observer
+
+	dispatch(action: ActionTypes) {
+		this._state.profilePage = profileReducer(this._state.profilePage, action)
+		this._state.DialogsPage = dialogsReducer(this._state.DialogsPage, action)
+		this._state.SideBarPage = sideBarReducer(this._state.SideBarPage, action)
+		this._callSubscriber()
 	},
 }
 

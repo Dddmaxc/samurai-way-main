@@ -4,13 +4,14 @@ import { DialogItem } from './DialogITem/DialogItem'
 import { Message } from './Message/Message'
 import { DialogsPage } from '../../redux/state'
 import { ChangeEvent, KeyboardEventHandler, useState } from 'react'
+import { addMessageAC } from '../../redux/dialogs-reducer'
 
 type Props = {
 	dialogsData: DialogsPage
-	addMessage: (newMessage: string) => void
+	dispatch: (action: any) => void
 }
 
-export const Dialogs = ({ dialogsData, addMessage }: Props) => {
+export const Dialogs = ({ dialogsData, dispatch }: Props) => {
 	const [value, setValue] = useState('')
 	let dialogsElements = dialogsData.dialogsData.map((d, id) => (
 		<div className={s.containerForImgAndName} key={id}>
@@ -34,9 +35,9 @@ export const Dialogs = ({ dialogsData, addMessage }: Props) => {
 	}
 
 	let onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		console.log(e)
+		let action = addMessageAC(value)
 		if (e.code === 'Enter') {
-			addMessage(value)
+			dispatch(action)
 			setValue('')
 		}
 	}
