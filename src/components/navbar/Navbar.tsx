@@ -1,22 +1,24 @@
 import { NavLink } from 'react-router-dom'
 import s from './navbar.module.css'
-import { SideBarPage } from '../../redux/state'
+import { InitialSideBarPage } from '../../redux/sideBar-reducer'
 
 type Props = {
-	SideBarPage: SideBarPage
+	InitialSideBarPage: InitialSideBarPage
 }
 
-export const Navbar = ({ SideBarPage }: Props) => {
-	let newSideData = SideBarPage.friends.map((f, i) => {
-		return (
-			<div key={i}>
-				{f.name}
-				<p>
-					<img src={f.images} alt='img' />
-				</p>
-			</div>
-		)
-	})
+export const Navbar = ({ InitialSideBarPage }: Props) => {
+	console.log(`Navbar: ${InitialSideBarPage}`)
+	let newSideData =
+		InitialSideBarPage?.friends?.map((f, i) => {
+			return (
+				<div key={i}>
+					{f.name}
+					<p>
+						<img src={f.images} alt='img' />
+					</p>
+				</div>
+			)
+		}) ?? []
 	return (
 		<>
 			<nav className={s.nav}>

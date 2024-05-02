@@ -1,5 +1,4 @@
 import { AddMessageActionType } from './dialogs-reducer'
-import { ProfilePage } from './state'
 
 export type ActionTypes = AddPostActionType | AddMessageActionType
 export type AddPostActionType = {
@@ -7,7 +6,25 @@ export type AddPostActionType = {
 	type: 'ADD-POST'
 }
 
-const profileReducer = (state: ProfilePage, action: ActionTypes) => {
+type Post = {
+	id: string
+	message: string
+	likesCount: number
+}
+
+export type InitialProfilePage = {
+	posts: Post[]
+}
+
+let initialState: InitialProfilePage = {
+	posts: [
+		{ id: '1', message: 'Hi, how are u?', likesCount: 13 },
+		{ id: '2', message: 'it is my first post', likesCount: 15 },
+	],
+}
+
+const profileReducer = (state = initialState, action: ActionTypes) => {
+	debugger
 	switch (action.type) {
 		case 'ADD-POST':
 			let newPost = {
@@ -15,14 +32,17 @@ const profileReducer = (state: ProfilePage, action: ActionTypes) => {
 				message: action.message,
 				likesCount: 0,
 			}
-			state.posts.push(newPost)
-			return state
+			let copyState = { ...state }
+			copyState.posts = [...state.posts, newPost]
+
+			return copyState
 		default:
 			return state
 	}
 }
 
 export let addPostAC = (newPost: any) => {
+	debugger
 	return {
 		type: 'ADD-POST',
 		message: newPost,

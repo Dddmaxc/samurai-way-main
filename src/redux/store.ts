@@ -39,6 +39,9 @@ export type SideBarPage = {
 }
 
 export type State = {
+	profileReducer: any
+	sideBarReducer: any
+	dialogsReducer: any
 	_state: {
 		profilePage: ProfilePage
 		DialogsPage: DialogsPage
@@ -46,7 +49,7 @@ export type State = {
 	}
 }
 
-export type Store = {
+export type store = {
 	_state: {
 		profilePage: ProfilePage
 		DialogsPage: DialogsPage
@@ -55,7 +58,7 @@ export type Store = {
 	rerenderEntireTree: () => void
 	addPost: (postMessage: string) => void
 	addMessage: (message: string) => void
-	subscriber: (observer: (state: Store['_state']) => void) => void
+	subscriber: (observer: (state: store['_state']) => void) => void
 }
 
 let store = {

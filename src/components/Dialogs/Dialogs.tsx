@@ -1,19 +1,18 @@
-import { NavLink } from 'react-router-dom'
 import s from './Dialogs.module.css'
 import { DialogItem } from './DialogITem/DialogItem'
 import { Message } from './Message/Message'
-import { DialogsPage } from '../../redux/state'
-import { ChangeEvent, KeyboardEventHandler, useState } from 'react'
+import { InitialDialogsPage } from '../../redux/dialogs-reducer'
+import { ChangeEvent, useState } from 'react'
 import { addMessageAC } from '../../redux/dialogs-reducer'
 
 type Props = {
-	dialogsData: DialogsPage
+	InitialDialogsPage: InitialDialogsPage
 	dispatch: (action: any) => void
 }
 
-export const Dialogs = ({ dialogsData, dispatch }: Props) => {
+export const Dialogs = ({ InitialDialogsPage, dispatch }: Props) => {
 	const [value, setValue] = useState('')
-	let dialogsElements = dialogsData.dialogsData.map((d, id) => (
+	let dialogsElements = InitialDialogsPage.dialogsData.map((d, id) => (
 		<div className={s.containerForImgAndName} key={id}>
 			<div className={s.name}>
 				<DialogItem name={d.name} id={d.id} />
@@ -24,7 +23,7 @@ export const Dialogs = ({ dialogsData, dispatch }: Props) => {
 		</div>
 	))
 
-	let messagesElements = dialogsData.messagesData.map(m => (
+	let messagesElements = InitialDialogsPage.messagesData.map(m => (
 		<div className={s.text}>
 			<Message message={m.message} />
 		</div>

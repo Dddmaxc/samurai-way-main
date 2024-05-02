@@ -4,7 +4,16 @@ import { Navbar } from './components/navbar/Navbar'
 import { Profile } from './components/profile/Profile'
 import { Dialogs } from './components/Dialogs/Dialogs'
 import { BrowserRouter, Route } from 'react-router-dom'
-import { State } from './redux/state'
+import { InitialProfilePage } from './redux/profile-reducer'
+import { InitialDialogsPage } from './redux/dialogs-reducer'
+import { InitialSideBarPage } from './redux/sideBar-reducer'
+// import { State } from './redux/redux-store'
+
+type State = {
+	profileReducer: InitialProfilePage
+	dialogsReducer: InitialDialogsPage
+	sideBarReducer: InitialSideBarPage
+}
 
 type Props = {
 	state: State
@@ -16,17 +25,13 @@ function App(props: Props) {
 		<>
 			<Header />
 			<div className='app-wrapper'>
-				<Navbar
-					SideBarPage={{
-						friends: props.state._state.SideBarPage.friends,
-					}}
-				/>
+				<Navbar InitialSideBarPage={props.state.sideBarReducer} />
 				<Route
 					exact
 					path={'/dialogs'}
 					render={() => (
 						<Dialogs
-							dialogsData={props.state._state.DialogsPage}
+							InitialDialogsPage={props.state.dialogsReducer}
 							dispatch={props.dispatch}
 						/>
 					)}
@@ -35,7 +40,7 @@ function App(props: Props) {
 					path={'/profile'}
 					render={() => (
 						<Profile
-							posts={props.state._state.profilePage.posts}
+							posts={props.state.profileReducer.posts}
 							dispatch={props.dispatch}
 						/>
 					)}
