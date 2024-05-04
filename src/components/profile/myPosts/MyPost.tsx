@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import s from './MyPost.module.css'
 import { Post } from './post/Post'
-import { addPostAC } from '../../../redux/profile-reducer'
 
 type PropsPostType = {
 	id: string
@@ -10,26 +9,16 @@ type PropsPostType = {
 }
 
 export type PostType = {
-	dispatch: (action: any) => void
+	addPost: () => void
 	posts: Array<PropsPostType>
+	newPost: string
+	onChangeHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const MyPost = (props: PostType) => {
-	const [newPost, setNewPost] = useState('')
-
-	let postsElements = props.posts.map(p => (
+	const postsElements = props.posts.map(p => (
 		<Post message={p.message} like={p.likesCount} />
 	))
-
-	let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-		setNewPost(e.currentTarget.value)
-	}
-
-	let addPost = () => {
-		let action = addPostAC(newPost)
-		props.dispatch(action)
-		setNewPost('')
-	}
 
 	return (
 		<>
@@ -38,10 +27,10 @@ export const MyPost = (props: PostType) => {
 				<div>
 					<textarea
 						className={s.textarea}
-						value={newPost}
-						onChange={onChangeHandler}
+						value={props.newPost}
+						onChange={props.onChangeHandler}
 					/>
-					<button onClick={addPost}>add post</button>
+					<button onClick={props.addPost}>add post</button>
 					<button>remove</button>
 				</div>
 				<div className={s.postsElements}>{postsElements}</div>

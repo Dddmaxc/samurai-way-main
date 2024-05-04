@@ -2,17 +2,23 @@ import s from './Dialogs.module.css'
 import { DialogItem } from './DialogITem/DialogItem'
 import { Message } from './Message/Message'
 import { InitialDialogsPage } from '../../redux/dialogs-reducer'
-import { ChangeEvent, useState } from 'react'
-import { addMessageAC } from '../../redux/dialogs-reducer'
+import { ChangeEvent } from 'react'
 
 type Props = {
-	InitialDialogsPage: InitialDialogsPage
-	dispatch: (action: any) => void
+	dialogsReducer: InitialDialogsPage
+	onKeyPressHandler: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void
+	value: string
+	onChangeHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-export const Dialogs = ({ InitialDialogsPage, dispatch }: Props) => {
-	const [value, setValue] = useState('')
-	let dialogsElements = InitialDialogsPage.dialogsData.map((d, id) => (
+export const Dialogs = ({
+	dialogsReducer,
+	onKeyPressHandler,
+	onChangeHandler,
+	value,
+}: Props) => {
+	let state = dialogsReducer
+	let dialogsElements = state.dialogsData.map((d, id) => (
 		<div className={s.containerForImgAndName} key={id}>
 			<div className={s.name}>
 				<DialogItem name={d.name} id={d.id} />
@@ -23,23 +29,11 @@ export const Dialogs = ({ InitialDialogsPage, dispatch }: Props) => {
 		</div>
 	))
 
-	let messagesElements = InitialDialogsPage.messagesData.map(m => (
+	let messagesElements = state.messagesData.map(m => (
 		<div className={s.text}>
 			<Message message={m.message} />
 		</div>
 	))
-
-	let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-		setValue(e.currentTarget.value)
-	}
-
-	let onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		let action = addMessageAC(value)
-		if (e.code === 'Enter') {
-			dispatch(action)
-			setValue('')
-		}
-	}
 
 	return (
 		<>

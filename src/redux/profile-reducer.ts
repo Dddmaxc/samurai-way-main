@@ -24,7 +24,6 @@ let initialState: InitialProfilePage = {
 }
 
 const profileReducer = (state = initialState, action: ActionTypes) => {
-	debugger
 	switch (action.type) {
 		case 'ADD-POST':
 			let newPost = {
@@ -42,7 +41,6 @@ const profileReducer = (state = initialState, action: ActionTypes) => {
 }
 
 export let addPostAC = (newPost: any) => {
-	debugger
 	return {
 		type: 'ADD-POST',
 		message: newPost,

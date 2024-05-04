@@ -3,10 +3,12 @@ import { Header } from './components/header/Header'
 import { Navbar } from './components/navbar/Navbar'
 import { Profile } from './components/profile/Profile'
 import { Dialogs } from './components/Dialogs/Dialogs'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { InitialProfilePage } from './redux/profile-reducer'
 import { InitialDialogsPage } from './redux/dialogs-reducer'
 import { InitialSideBarPage } from './redux/sideBar-reducer'
+import { StoreType } from './redux/redux-store'
+import { DialogsContainer } from './components/Dialogs/DialogsContainer'
 // import { State } from './redux/redux-store'
 
 type State = {
@@ -18,6 +20,7 @@ type State = {
 type Props = {
 	state: State
 	dispatch: (action: any) => void
+	store: StoreType
 }
 
 function App(props: Props) {
@@ -29,21 +32,11 @@ function App(props: Props) {
 				<Route
 					exact
 					path={'/dialogs'}
-					render={() => (
-						<Dialogs
-							InitialDialogsPage={props.state.dialogsReducer}
-							dispatch={props.dispatch}
-						/>
-					)}
+					render={() => <DialogsContainer store={props.store} />}
 				/>
 				<Route
 					path={'/profile'}
-					render={() => (
-						<Profile
-							posts={props.state.profileReducer.posts}
-							dispatch={props.dispatch}
-						/>
-					)}
+					render={() => <Profile store={props.store} />}
 				/>
 			</div>
 		</>
