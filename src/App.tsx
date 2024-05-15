@@ -9,6 +9,7 @@ import { InitialDialogsPage } from './redux/dialogs-reducer'
 import { InitialSideBarPage } from './redux/sideBar-reducer'
 import { StoreType } from './redux/redux-store'
 import { DialogsContainer } from './components/Dialogs/DialogsContainer'
+import { KeyboardEvent, ChangeEvent } from 'react'
 // import { State } from './redux/redux-store'
 
 type State = {
@@ -29,11 +30,7 @@ function App(props: Props) {
 			<Header />
 			<div className='app-wrapper'>
 				<Navbar InitialSideBarPage={props.state.sideBarReducer} />
-				<Route
-					exact
-					path={'/dialogs'}
-					render={() => <DialogsContainer store={props.store} />}
-				/>
+				<Route exact path={'/dialogs'} render={() => <DialogsContainer />} />
 				<Route
 					path={'/profile'}
 					render={() => <Profile store={props.store} />}

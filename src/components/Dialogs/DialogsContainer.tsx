@@ -1,36 +1,34 @@
-import { InitialDialogsPage } from '../../redux/dialogs-reducer'
-import { ChangeEvent, useState } from 'react'
+import { Dispatch, useState } from 'react'
 import { addMessageAC } from '../../redux/dialogs-reducer'
-import { StoreType } from '../../redux/redux-store'
+import { AppRootState } from '../../redux/redux-store'
 import { Dialogs } from './Dialogs'
+import { connect } from 'react-redux'
+import { AnyAction } from 'redux'
 
-type Props = {
-	store: StoreType
+let mapStateToProps = (state: AppRootState) => {
+	return { dialogsReducer: state.dialogsReducer }
+}
+let mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+	return {
+		onKeyPressHandler: (value: string) => {
+			dispatch(addMessageAC(value))
+		},
+	}
 }
 
-export const DialogsContainer = ({ store }: Props) => {
-	let state = store.getState().dialogsReducer
+export const SuperDialogsContainer = (
+	props: ReturnType<typeof mapStateToProps> &
+		ReturnType<typeof mapDispatchToProps>
+) => {
 	const [value, setValue] = useState('')
-
-	let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-		setValue(e.currentTarget.value)
-	}
-
-	let onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		if (e.code === 'Enter') {
-			store.dispatch(addMessageAC(value))
-			setValue('')
-		}
-	}
-
 	return (
 		<>
-			<Dialogs
-				onKeyPressHandler={onKeyPressHandler}
-				value={value}
-				onChangeHandler={onChangeHandler}
-				dialogsReducer={state}
-			/>
+			<Dialogs {...props} value={value} onChangeHandler={setValue} />
 		</>
 	)
 }
+
+export const DialogsContainer = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(SuperDialogsContainer)

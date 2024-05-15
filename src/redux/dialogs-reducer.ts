@@ -71,15 +71,10 @@ const dialogsReducer = (state = initialState, action: ActionTypes) => {
 				id: '6',
 			}
 
-			let newPhoto = {
-				name: 'Gojo',
-				id: '6',
-				images: 'https://wallpapercave.com/wp/wp11187241.jpg',
-			}
+			let copyState = { ...state }
 
-			state.dialogsData.push(newPhoto)
-			state.messagesData.push(newMessage)
-			return state
+			copyState.messagesData.push(newMessage)
+			return copyState
 		default:
 	}
 	return state

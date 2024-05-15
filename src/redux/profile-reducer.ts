@@ -40,7 +40,7 @@ const profileReducer = (state = initialState, action: ActionTypes) => {
 	}
 }
 
-export let addPostAC = (newPost: any) => {
+export let addPostAC = (newPost: string) => {
 	return {
 		type: 'ADD-POST',
 		message: newPost,

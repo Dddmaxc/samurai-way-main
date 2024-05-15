@@ -1,6 +1,6 @@
 import s from './profile.module.css'
 import { ProfileInfo } from './ProFileInfo/ProfileInfo'
-import { MyPostContainer, PostType } from './myPosts/MyPost Container'
+import { MyPostContainer, PostType } from './myPosts/MyPostContainer'
 import { AppRootState, StoreType } from '../../redux/redux-store'
 
 type PropsType = {
@@ -13,7 +13,7 @@ export const Profile = (props: PropsType) => {
 	return (
 		<div>
 			<ProfileInfo />
-			<MyPostContainer store={props.store} />
+			<MyPostContainer />
 		</div>
 	)
 }

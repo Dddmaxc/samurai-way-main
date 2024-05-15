@@ -2,13 +2,12 @@ import s from './Dialogs.module.css'
 import { DialogItem } from './DialogITem/DialogItem'
 import { Message } from './Message/Message'
 import { InitialDialogsPage } from '../../redux/dialogs-reducer'
-import { ChangeEvent } from 'react'
 
 type Props = {
 	dialogsReducer: InitialDialogsPage
-	onKeyPressHandler: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void
+	onKeyPressHandler: (e: string) => void
 	value: string
-	onChangeHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
+	onChangeHandler: (e: string) => void
 }
 
 export const Dialogs = ({
@@ -49,9 +48,14 @@ export const Dialogs = ({
 							/>
 							<textarea
 								value={value}
-								onChange={onChangeHandler}
+								onChange={e => onChangeHandler(e.currentTarget.value)}
 								className={s.textarea}
-								onKeyPress={onKeyPressHandler}
+								onKeyPress={e =>
+									e.key === 'Enter'
+										? (onKeyPressHandler(e.currentTarget.value),
+										  onChangeHandler(''))
+										: null
+								}
 							></textarea>
 						</div>
 					</p>
