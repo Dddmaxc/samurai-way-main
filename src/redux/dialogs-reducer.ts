@@ -66,21 +66,19 @@ let initialState: InitialDialogsPage = {
 const dialogsReducer = (state = initialState, action: ActionTypes) => {
 	switch (action.type) {
 		case 'ADD-MESSAGE':
-			let newMessage = {
-				message: action.message,
-				id: '6',
+			return {
+				...state,
+				messagesData: [
+					...state.messagesData,
+					{ id: 6, message: action.message },
+				],
 			}
-
-			let copyState = { ...state }
-
-			copyState.messagesData.push(newMessage)
-			return copyState
 		default:
 	}
 	return state
 }
 
-export let addMessageAC = (message: any) => {
+export let addMessageAC = (message: string) => {
 	return {
 		type: 'ADD-MESSAGE',
 		message: message,

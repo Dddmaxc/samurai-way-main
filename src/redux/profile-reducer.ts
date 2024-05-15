@@ -31,10 +31,7 @@ const profileReducer = (state = initialState, action: ActionTypes) => {
 				message: action.message,
 				likesCount: 0,
 			}
-			let copyState = { ...state }
-			copyState.posts = [...state.posts, newPost]
-
-			return copyState
+			return { ...state, posts: [...state.posts, newPost] }
 		default:
 			return state
 	}

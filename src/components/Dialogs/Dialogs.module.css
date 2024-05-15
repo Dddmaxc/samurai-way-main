@@ -4,6 +4,7 @@
 	height: 100vh;
 	width: 1000px;
 	overflow: auto;
+	margin-top: 10px;
 }
 
 .dialogsItems a {
@@ -17,10 +18,7 @@ img {
 	height: 50px;
 	border-radius: 50%;
 }
-/* .dialogs img:hover {
-	transform: scale(1.2);
-	transition: ease-in-out;
-} */
+
 .containerForImgAndName {
 	display: flex;
 	flex-direction: row-reverse;
@@ -30,7 +28,7 @@ img {
 }
 .text {
 	margin-bottom: 50px;
-	background: #d900ff7a;
+	background: #000000ba;
 	width: 200px;
 	border-radius: 15px;
 	padding-left: 10px;
@@ -55,9 +53,9 @@ img {
 	height: 30px;
 	border-radius: 20px;
 	font-size: 20px;
-	padding: 10px 5px 5px 20px;
-	background-color: #d900ff7a;
-	color: #00faff;
+	padding: 10px 5px 10px 5px;
+	background-color: #0000007a;
+	color: #ffd500;
 }
 .textarea::-webkit-scrollbar {
 	width: 0px;
@@ -66,5 +64,5 @@ img {
 ::-webkit-scrollbar {
 	width: 0px; /* ширина для вертикального скролла */
 	height: 8px; /* высота для горизонтального скролла */
-	background-color: #d900ff7a;
+	background-color: #ffd500;
 }
